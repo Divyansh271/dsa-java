@@ -1,3 +1,5 @@
+package arrays;
+
 import java.util.*;
 
 public class arrays_1 {
@@ -124,14 +126,12 @@ public class arrays_1 {
                     ret_arr[k++] = myarr1[i];
                 }
                 i++;
-            }
-            else if (myarr1[i] > myarr2[j]) {
+            } else if (myarr1[i] > myarr2[j]) {
                 if (k == 0 || ret_arr[k - 1] != myarr2[j]) {
                     ret_arr[k++] = myarr2[j];
                 }
                 j++;
-            }
-            else { // myarr1[i] == myarr2[j]
+            } else { // myarr1[i] == myarr2[j]
                 if (k == 0 || ret_arr[k - 1] != myarr1[i]) {
                     ret_arr[k++] = myarr1[i];
                 }
@@ -156,36 +156,36 @@ public class arrays_1 {
     }
 
     public static int[] intersectionOf2SortedArrays(int[] myarr1, int[] myarr2) {
-    int n1 = myarr1.length;
-    int n2 = myarr2.length;
+        int n1 = myarr1.length;
+        int n2 = myarr2.length;
 
-    int[] ret_arr = new int[Math.min(n1, n2)];
+        int[] ret_arr = new int[Math.min(n1, n2)];
 
-    int i = 0, j = 0, k = 0;
+        int i = 0, j = 0, k = 0;
 
-    while (i < n1 && j < n2) {
+        while (i < n1 && j < n2) {
 
-        if (myarr1[i] < myarr2[j]) {
-            i++;
-        }
-
-        else if (myarr1[i] > myarr2[j]) {
-            j++;
-        }
-
-        else { // myarr1[i] == myarr2[j]
-
-            if (k == 0 || ret_arr[k - 1] != myarr1[i]) {
-                ret_arr[k++] = myarr1[i];
+            if (myarr1[i] < myarr2[j]) {
+                i++;
             }
 
-            i++;
-            j++;
-        }
-    }
+            else if (myarr1[i] > myarr2[j]) {
+                j++;
+            }
 
-    return Arrays.copyOf(ret_arr, k);
-}
+            else { // myarr1[i] == myarr2[j]
+
+                if (k == 0 || ret_arr[k - 1] != myarr1[i]) {
+                    ret_arr[k++] = myarr1[i];
+                }
+
+                i++;
+                j++;
+            }
+        }
+
+        return Arrays.copyOf(ret_arr, k);
+    }
 
     public static void main(String[] args) {
         int[] arr1 = { 12, 46, 23, 9, 65, 31, 89, 34, 3 };

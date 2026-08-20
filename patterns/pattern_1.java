@@ -1,3 +1,4 @@
+package patterns;
 import java.util.Scanner;
 
 //these are all aestrisk patterns

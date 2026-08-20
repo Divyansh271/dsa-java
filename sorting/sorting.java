@@ -1,3 +1,4 @@
+package sorting;
 public class sorting {
     public static void sort_selection(int[] arr1) {
         int min, temp;
