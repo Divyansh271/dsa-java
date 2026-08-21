@@ -1,0 +1,126 @@
+package arrays;
+import java.util.*;
+
+public class arrays_2 {
+    public static int findMissingNum(int[] arr) {
+        int n = arr.length;
+        int sum = 0;
+        for (int i : arr) {
+            sum += i;
+        }
+        return (n * (n + 1) / 2 - sum);
+    }
+
+    public static int maxConsecutiveOnes(int[] myarr) {
+        int temp = 0, max = 0;
+        for (int i : myarr) {
+            if (i == 1) {
+                temp++;
+                if (temp > max) {
+                    max = temp;
+                }
+            } else {
+                temp = 0;
+            }
+        }
+        return max;
+    }
+
+    public static int singleAppearanceInArray(int[] myarr) {
+        // brute force - compare them in a nested loop. O(n**2)
+
+        // better way - but fails when negative numbers and VERY large numbers in a small array. use hashmap
+        int max = 0;
+        for (int i : myarr) {
+            if (i > max) {
+                max = i;
+            }
+        }
+        int[] hsmp = new int[max + 1];
+        for (int i : myarr) {
+            hsmp[i]++;
+        }
+        for (int i = 0; i < hsmp.length; i++) {
+            if (hsmp[i] == 1) {
+                max = i;
+                break;
+            }
+        }
+        return max;
+    }
+
+    public static int largestSubarrayWithSumK (int [] myarr, int k){
+        //1st attempt
+        // int i = 0, j = 0, count = 0, temp_sum = 0;
+        // while (j < myarr.length){
+        //     for (int l = i; l < j+1; l++) {
+        //         temp_sum+=myarr[l];
+        //     }
+        //     if (temp_sum > k){
+        //         i++;
+        //     }else if (temp_sum < k){
+        //         j++;
+        //     } else {
+        //         if(1+j-i > count){
+        //             count = 1+j-i;
+        //         } 
+        //         i++;
+        //         j++;
+        //     }
+        //     temp_sum = 0;
+        // }
+        // return count;
+
+        //2nd attempt - a bit more optimised
+        int i = 0, j = 0, count = 0, temp_sum = myarr[i];
+        while (j < myarr.length-1){
+            if (temp_sum > k){
+                temp_sum -= myarr[i];
+                i++;
+            }else if (temp_sum < k){
+                j++;
+                temp_sum += myarr[j];
+            } 
+            if (temp_sum == k) {
+                if(1+j-i > count){
+                    count = 1+j-i;
+                } 
+                temp_sum -= myarr[i];
+                i++;
+                j++;
+                temp_sum += myarr[j];
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner mysc = new Scanner(System.in);
+
+        // To find the missing number in 0 to N
+        // System.out.println("Enter the number of elements:");
+        // int n = mysc.nextInt();
+        // int[] arr1 = new int[n];
+        // for (int i = 0; i < n; i++) {
+        // arr1[i] = mysc.nextInt();
+        // }
+        // System.out.println(findMissingNum(arr1));
+
+        // System.out.println("Enter the number of elements:");
+        // int n = mysc.nextInt();
+        // int[] arr1 = new int[n];
+        // for (int i = 0; i < n; i++) {
+        //     arr1[i] = mysc.nextInt();
+        // }
+        // System.out.println(singleAppearanceInArray(arr1));
+        
+        System.out.println("Enter the number of elements:");
+        int n = mysc.nextInt();
+        int[] arr1 = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr1[i] = mysc.nextInt();
+        }
+        System.out.println(largestSubarrayWithSumK(arr1, 1));
+        mysc.close();
+    }
+}
