@@ -1,4 +1,5 @@
 package arrays;
+
 import java.util.*;
 
 public class arrays_2 {
@@ -29,7 +30,8 @@ public class arrays_2 {
     public static int singleAppearanceInArray(int[] myarr) {
         // brute force - compare them in a nested loop. O(n**2)
 
-        // better way - but fails when negative numbers and VERY large numbers in a small array. use hashmap
+        // better way - but fails when negative numbers and VERY large numbers in a
+        // small array. use hashmap
         int max = 0;
         for (int i : myarr) {
             if (i > max) {
@@ -49,49 +51,89 @@ public class arrays_2 {
         return max;
     }
 
-    public static int largestSubarrayWithSumK (int [] myarr, int k){
-        //1st attempt
+    public static int largestSubarrayWithSumK(int[] myarr, int k) {
+        // 1st attempt
         // int i = 0, j = 0, count = 0, temp_sum = 0;
         // while (j < myarr.length){
-        //     for (int l = i; l < j+1; l++) {
-        //         temp_sum+=myarr[l];
-        //     }
-        //     if (temp_sum > k){
-        //         i++;
-        //     }else if (temp_sum < k){
-        //         j++;
-        //     } else {
-        //         if(1+j-i > count){
-        //             count = 1+j-i;
-        //         } 
-        //         i++;
-        //         j++;
-        //     }
-        //     temp_sum = 0;
+        // for (int l = i; l < j+1; l++) {
+        // temp_sum+=myarr[l];
+        // }
+        // if (temp_sum > k){
+        // i++;
+        // }else if (temp_sum < k){
+        // j++;
+        // } else {
+        // if(1+j-i > count){
+        // count = 1+j-i;
+        // }
+        // i++;
+        // j++;
+        // }
+        // temp_sum = 0;
         // }
         // return count;
 
-        //2nd attempt - a bit more optimised
+        // 2nd attempt - a bit more optimised - O(2N)
         int i = 0, j = 0, count = 0, temp_sum = myarr[i];
-        while (j < myarr.length-1){
-            if (temp_sum > k){
+        while (j < myarr.length) {
+            if (temp_sum > k) {
                 temp_sum -= myarr[i];
                 i++;
-            }else if (temp_sum < k){
-                j++;
-                temp_sum += myarr[j];
-            } 
-            if (temp_sum == k) {
-                if(1+j-i > count){
-                    count = 1+j-i;
-                } 
-                temp_sum -= myarr[i];
-                i++;
-                j++;
-                temp_sum += myarr[j];
+            } else if (temp_sum < k) {
+                if (j != myarr.length - 1) {
+                    j++;
+                    temp_sum += myarr[j];
+                }
+            } else {
+                if (1 + j - i > count) {
+                    count = 1 + j - i;
+                }
+                if (j != myarr.length - 1) {
+                    temp_sum -= myarr[i];
+                    i++;
+                    j++;
+                    temp_sum += myarr[j];
+                } else {
+                    break;
+                }
             }
         }
         return count;
+
+        //these subarrays can be counted as well
+    }
+
+    public static boolean twoSumCheck (int [] myarr, int n){
+        // ONLY CHECK if 2 elements from the list give the sum n
+
+        // brute force method
+        // int i =0, j = 0;
+        // boolean check = false;
+        // for (i = 0; i < myarr.length; i++) {
+        //     for (j = 0; j < myarr.length; j++) {
+        //         if (myarr[i] + myarr[j] == n){
+        //             check = true;
+        //             break;
+        //         }
+        //     }
+        // }
+        // return check;
+        
+        //better way - cut what's repeating
+        // int i =0, j = 0;
+        // boolean check = false;
+        // for (i = 0; i < myarr.length; i++) {
+        //     for (j = i+1; j < myarr.length; j++) {
+        //         if (myarr[i] + myarr[j] == n){
+        //             check = true;
+        //             break;
+        //         }
+        //     }
+        // }
+        // return check;
+
+        //optimal way
+        
     }
 
     public static void main(String[] args) {
@@ -110,17 +152,32 @@ public class arrays_2 {
         // int n = mysc.nextInt();
         // int[] arr1 = new int[n];
         // for (int i = 0; i < n; i++) {
-        //     arr1[i] = mysc.nextInt();
+        // arr1[i] = mysc.nextInt();
         // }
         // System.out.println(singleAppearanceInArray(arr1));
-        
+
+        // System.out.println("Enter the number of elements:");
+        // int n = mysc.nextInt();
+        // System.out.println("Enter the sum u want..?");
+        // int k = mysc.nextInt();
+        // System.out.println("Enter array numbers:");
+        // int[] arr1 = new int[n];
+        // for (int i = 0; i < n; i++) {
+        //     arr1[i] = mysc.nextInt();
+        // }
+        // System.out.println(largestSubarrayWithSumK(arr1, k));
+        // mysc.close();
+
         System.out.println("Enter the number of elements:");
         int n = mysc.nextInt();
+        System.out.println("Enter the sum u want..?");
+        int k = mysc.nextInt();
+        System.out.println("Enter array numbers:");
         int[] arr1 = new int[n];
         for (int i = 0; i < n; i++) {
             arr1[i] = mysc.nextInt();
         }
-        System.out.println(largestSubarrayWithSumK(arr1, 1));
+        System.out.println(largestSubarrayWithSumK(arr1, k));
         mysc.close();
     }
 }
