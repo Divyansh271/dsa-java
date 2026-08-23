@@ -146,6 +146,37 @@ public class arrays_2 {
         return check;
     }
 
+    public static void sort0s1s2s (int [] nums){
+        //1st method
+        // int count0=0, count1=0, count2=0;
+        // for (int i : nums) {
+        //     if (i == 0){
+        //         count0 ++;
+        //     } else if (i == 1){
+        //         count1 ++;
+        //     }else {
+        //         count2 ++;
+        //     }
+        // }
+        // for (int i = 0; i < count0; i++) {
+        //     nums[i] = 0;
+        // }
+        // for (int i = 0; i < count1; i++) {
+        //     nums[i+count0] = 1;
+        // }
+        // for (int i = 0; i < count2; i++) {
+        //     nums[i+count0+count1] = 2;
+        // }
+        // return nums;
+
+        //2nd method
+        int i = 0, j = 1, k = nums.length-1;
+        while (j<nums.length){
+
+        }
+
+    }
+
     public static void main(String[] args) {
         Scanner mysc = new Scanner(System.in);
 
@@ -178,6 +209,17 @@ public class arrays_2 {
         // System.out.println(largestSubarrayWithSumK(arr1, k));
         // mysc.close();
 
+        // System.out.println("Enter the number of elements:");
+        // int n = mysc.nextInt();
+        // System.out.println("Enter the sum u want..?");
+        // int k = mysc.nextInt();
+        // System.out.println("Enter array numbers:");
+        // int[] arr1 = new int[n];
+        // for (int i = 0; i < n; i++) {
+        //     arr1[i] = mysc.nextInt();
+        // }
+        // System.out.println(largestSubarrayWithSumK(arr1, k));
+        
         System.out.println("Enter the number of elements:");
         int n = mysc.nextInt();
         System.out.println("Enter the sum u want..?");
@@ -187,7 +229,7 @@ public class arrays_2 {
         for (int i = 0; i < n; i++) {
             arr1[i] = mysc.nextInt();
         }
-        System.out.println(largestSubarrayWithSumK(arr1, k));
+        System.out.println(twoSumCheck(arr1, k));
         mysc.close();
     }
 }
