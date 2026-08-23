@@ -133,7 +133,17 @@ public class arrays_2 {
         // return check;
 
         //optimal way
-        
+        boolean check = false;
+        HashMap<Integer, Integer> hsmp = new HashMap<>();
+        for (int i = 0; i < myarr.length; i++) {
+            if (hsmp.containsKey(n - myarr[i])){
+                check = true;
+                break;
+            } else {
+                hsmp.put(myarr[i],1);
+            }
+        }
+        return check;
     }
 
     public static void main(String[] args) {
