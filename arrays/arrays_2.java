@@ -3,6 +3,7 @@ package arrays;
 import java.util.*;
 
 public class arrays_2 {
+
     public static int findMissingNum(int[] arr) {
         int n = arr.length;
         int sum = 0;
@@ -170,38 +171,59 @@ public class arrays_2 {
         // return nums;
 
         // 2nd method
-        int i = 0, j = 1, k = nums.length - 1;
-        int temp;
+        // int i = 0, j = 1, k = nums.length - 1;
+        // int temp;
+        // while (j <= k) {
+        // if (nums[j] == 0 && i != j) {
+        // if (nums[i] == 0) {
+        // i++;
+        // temp = nums[i];
+        // nums[i] = nums[j];
+        // nums[j] = temp;
+        // } else {
+        // temp = nums[i];
+        // nums[i] = nums[j];
+        // nums[j] = temp;
+        // i++;
+        // }
+        // } else if (nums[j] == 2 && j != k) {
+        // if (nums[k] == 2) {
+        // k--;
+        // temp = nums[k];
+        // nums[k] = nums[j];
+        // nums[j] = temp;
+        // } else {
+        // temp = nums[k];
+        // nums[k] = nums[j];
+        // nums[j] = temp;
+        // k--;
+        // }
+        // } else {
+        // j++;
+        // }
+        // }
+
+        // 3: Dutch Flag Algo
+        int i = 0, j = 0, k = nums.length - 1, temp;
+
         while (j <= k) {
-            if (nums[j] == 0 && i != j) {
-                if (nums[i] == 0) {
-                    i++;
-                    temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                } else {
-                    temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                    i++;
-                }
-            } else if (nums[j] == 2 && j != k) {
-                if (nums[k] == 2) {
-                    k--;
-                    temp = nums[k];
-                    nums[k] = nums[j];
-                    nums[j] = temp;
-                } else {
-                    temp = nums[k];
-                    nums[k] = nums[j];
-                    nums[j] = temp;
-                    k--;
-                }
+            if (nums[j] == 0) {
+                temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
+                j++;
+            } else if (nums[j] == 2) {
+                temp = nums[k];
+                nums[k] = nums[j];
+                nums[j] = temp;
+                k--;
             } else {
                 j++;
             }
         }
         return nums;
+
     }
 
     public static void main(String[] args) {
