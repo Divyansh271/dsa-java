@@ -141,7 +141,7 @@ public class arrays_2 {
                 check = true;
                 break;
             } else {
-                hsmp.put(myarr[i], 1);
+                hsmp.put(myarr[i], i);
             }
         }
         return check;
